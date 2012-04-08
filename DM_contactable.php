@@ -22,7 +22,7 @@ $DM_contactable_config_file=GSDATAOTHERPATH .'contactable.xml';
 register_plugin(
 	$thisfile_contactable, 							# ID of plugin, should be filename minus php
 	'Contactable Email Form GS Plugin', 			# Title of plugin
-	'1.7', 											# Version of plugin
+	'1.8', 											# Version of plugin
 	'Mike Swan',									# Author of plugin
 	'http://www.digimute.com/', 					# Author URL
 	'Contactable Email Form GS Plugin', 			# Plugin Description
