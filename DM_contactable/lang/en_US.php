@@ -20,6 +20,8 @@ $i18n = array (
 	"CONTACTABLE_DISCLAIMER" => 'Disclaimer Notice',
 	"CONTACTABLE_HIDEONSUBMIT" => 'Hide form after submit (true or false)',
 	"CONTACTABLE_NOTRECIEVEDMSG" => 'Not Recieved Message',
-	"CONTACTABLE_LANGUAGE" => 'Select a language'
+	"CONTACTABLE_LANGUAGE" => 'Select a language',
+	 "CONTACTABLE_HIDEONSUBMIT_YES" => 'Yes',
+    "CONTACTABLE_HIDEONSUBMIT_NO" => 'No'
 	
 );

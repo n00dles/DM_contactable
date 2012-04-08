@@ -21,6 +21,6 @@
 		mail($ct_emailaddr, $subject, $contactMessage,$headers);
 		echo('success'); //return success callback
 	} else {
-		echo('An invalid email address was entered'); //email was not valid
+		echo('failed'); //email was not valid
 	}
 ?>

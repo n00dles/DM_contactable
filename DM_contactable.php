@@ -64,11 +64,11 @@ if (file_exists($DM_contactable_config_file)) {
 	$xml->addChild('emailsubject', $ct_emailsubject);
 	$xml->addChild('name', $ct_name);
 	$xml->addChild('email', $ct_email);
-	$xml->addChild('message', $ct_message);
-	$xml->addChild('recievedmsg', $ct_recievedMsg);
-	$xml->addChild('notrecievedmsg', $ct_notRecievedMsg);
-	$xml->addChild('disclaimer', $ct_disclaimer);
-	$xml->addChild('hideonsubmit', $ct_hideOnSubmit);
+	$xml->addChild('message', stripcslashes($ct_message));
+    $xml->addChild('recievedmsg', stripcslashes($ct_recievedMsg));
+    $xml->addChild('notrecievedmsg', stripcslashes($ct_notRecievedMsg));
+    $xml->addChild('disclaimer', stripcslashes($ct_disclaimer));
+    $xml->addChild('hideonsubmit', $ct_hideOnSubmit);
 	$xml->asXML($DM_contactable_config_file);
 }
 
@@ -107,10 +107,10 @@ function contactableInit(){
  *
  */
 function DM_contactable_doheader(){
-	
-	register_script('contactable','/plugins/DM_contactable/js/jquery.contactable.js', '1.2.1', FALSE);
-	register_script('contactable-validate', '/plugins/DM_contactable/js/jquery.validate.pack.js', '1.5.1', FALSE);
-	register_style('contactable-css','/plugins/DM_contactable/css/contactable.css','1.2.1','screen');
+	global $SITEURL;
+	register_script('contactable',$SITEURL.'plugins/DM_contactable/js/jquery.contactable.js', '1.2.1', FALSE);
+	register_script('contactable-validate', $SITEURL.'plugins/DM_contactable/js/jquery.validate.pack.js', '1.5.1', FALSE);
+	register_style('contactable-css',$SITEURL.'plugins/DM_contactable/css/contactable.css','1.2.1','screen');
 		
 	queue_script('jquery', GSFRONT);
 	queue_script('contactable', GSFRONT);
@@ -143,7 +143,7 @@ function DM_contactable_show() {
 		$ct_recievedMsg = isset($_POST['recievedmsg']) ? $_POST['recievedmsg'] : $ct_recievedMsg;
 		$ct_notRecievedMsg = isset($_POST['notrecievedmsg']) ? $_POST['notrecievedmsg'] : $ct_notRecievedMsg;
 		$ct_disclaimer = isset($_POST['disclaimer']) ? $_POST['disclaimer'] : $ct_disclaimer;
-		$ct_hideOnSubmit = isset($_POST['hideonsubmit']) ? $_POST['hideonsubmit'] : $ct_disclaimer;
+		$ct_hideOnSubmit = isset($_POST['hideonsubmit']) ? $_POST['hideonsubmit'] : $ct_hideOnSubmit;
 		# if there are no errors, Save data
 		if (!$error) {
 			$xml = @new SimpleXMLElement('<item></item>');
@@ -152,10 +152,10 @@ function DM_contactable_show() {
 			$xml->addChild('emailsubject', $ct_emailsubject);
 			$xml->addChild('name', $ct_name);
 			$xml->addChild('email', $ct_email);
-			$xml->addChild('message', $ct_message);
-			$xml->addChild('recievedmsg', $ct_recievedMsg);
-			$xml->addChild('notrecievedmsg', $ct_notRecievedMsg);
-			$xml->addChild('disclaimer', $ct_disclaimer);
+			$xml->addChild('message', stripcslashes($ct_message));
+            $xml->addChild('recievedmsg', stripcslashes($ct_recievedMsg));
+            $xml->addChild('notrecievedmsg', stripcslashes($ct_notRecievedMsg));
+            $xml->addChild('disclaimer', stripcslashes($ct_disclaimer));
 			$xml->addChild('hideonsubmit', $ct_hideOnSubmit);
 			
 			if (! $xml->asXML($DM_contactable_config_file)) {
@@ -200,6 +200,7 @@ function DM_contactable_show() {
 		<p><label for="recievedmsg" ><?php i18n($thisfile_contactable.'/CONTACTABLE_RECIEVEDMSG'); ?></label><input id="recievedmsg" name="recievedmsg" class="text" value="<?php echo $ct_recievedMsg; ?>" /></p>
 		<p><label for="notrecievedmsg" ><?php i18n($thisfile_contactable.'/CONTACTABLE_NOTRECIEVEDMSG'); ?></label><input id="notrecievedmsg" name="notrecievedmsg" class="text" value="<?php echo $ct_notRecievedMsg; ?>" /></p>
 		<p><label for="disclaimer" ><?php i18n($thisfile_contactable.'/CONTACTABLE_DISCLAIMER'); ?></label><input id="disclaimer" name="disclaimer" class="text" value="<?php echo $ct_disclaimer; ?>" /></p>
+		<p><label for="hideOnSubmit" ><?php i18n($thisfile_contactable.'/CONTACTABLE_HIDEONSUBMIT'); ?></label><select name="hideonsubmit"><option value="true"><?php i18n($thisfile_contactable.'/CONTACTABLE_HIDEONSUBMIT_YES'); ?><option  value="false"><?php i18n($thisfile_contactable.'/CONTACTABLE_HIDEONSUBMIT_NO'); ?></select></p>
 		<p><input type="submit" id="submit" class="submit" value="<?php i18n('BTN_SAVESETTINGS'); ?>" name="submit" /></p>
 	</form>
 	<?php

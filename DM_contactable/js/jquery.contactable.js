@@ -77,12 +77,12 @@
 						$('#loading').css({display:'none'}); 
 						if( data == 'success') {
 							$('#callback').show().append(defaults.recievedMsg);
-							if(defaults.hideOnSubmit == true) {
+							if(defaults.hideOnSubmit == 'true') {
 								//hide the tab after successful submition if requested
-								$('#contactForm').animate({dummy:1}, 2000).animate({"marginLeft": "-=390px"}, "slow");
-								$('div#contactable').animate({dummy:1}, 2000).animate({"marginLeft": "-=387px"}, "slow").animate({"marginLeft": "+=5px"}, "fast"); 
-								$('#overlay').css({display: 'none'});	
-								$('div#contactable').toggle('hide');
+								$('#contactForm').animate({dummy:1}, 2000).animate({"marginLeft": "-=450px"}, "slow");
+								$('div#contactable').animate({dummy:1}, 2000).animate({"marginLeft": "-=447px"}, "slow").animate({"marginLeft": "+=5px"}, "fast"); 
+								$('#overlay').css({display: 'none'});
+							} else {
 								location.reload();
 							}
 						} else {
